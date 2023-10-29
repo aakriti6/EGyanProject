@@ -1,0 +1,77 @@
+{% extends 'parent.html' %}  
+<!-- template inheritance -->
+{% load static %}
+{% block body %}
+<script>
+    // alert("Hiii");
+    function validate()
+    {
+        // alert("Hiii");
+        var userid = document.getElementById("userid");
+        var password =  document.getElementById("password");
+        if(userid.value == "" || userid.value == null )
+        {
+            alert("Please enter userid");
+            userid.focus();
+        }
+        else if(password.value=="" || password.value == null )
+        {
+            alert("Please  enter password");
+            password.focus();
+        }
+        else
+        {
+            document.getElementById("frmlogin").submit();
+        }
+    }
+</script>
+<h1 style="text-align:center; color: #800f2f;">Login Form</h1>
+{% if messages %}
+    {% for message in messages %}
+        <p style="text-align: center; color: green;">{{message}}</p>
+    {% endfor %}
+{% endif %}
+    <div class="row">
+        <div class="col-sm-4">
+            <img style="text-align: center;" src="{% static 'images/1.png' %}" alt="" height="300" width="500">
+        </div>
+        <div class="col-sm-8">
+            <form  action="{% url 'nouapp:login' %}" method="post" class="form-group" id="frmlogin" onsubmit="event.preventDefault();validate();">
+                {% csrf_token %}
+                <table class="table " style="width: 80%; margin: auto;">
+                    <tr>
+                        <td>Enter User Id</td>
+                        <td>
+                            <input type="text" name="userid" class="form-control" id="userid">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter Password</td>
+                        <td>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter user type</td>
+                        <td>
+                            <select name="usertype" class="form-control">
+                                <option selected>-Select User Type-</option>
+                                <option value="student">Student</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+

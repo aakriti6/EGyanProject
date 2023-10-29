@@ -1,0 +1,139 @@
+{% extends 'parent.html' %}  
+<!-- template inheritance -->
+{% load static %}
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{message}} 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="row">
+    <div class="col-sm-8">
+        <h1 style="text-align:center; color: #800f2f;">Student Registration Form</h1>
+<form action="{% url 'nouapp:registration' %}" class="form-group" method="post">
+    {% csrf_token %}
+    <table class="table" style="width: 80%; margin: auto; background-color: #273B57; color: white;">
+        <tr>
+            <td>
+                <label class="form-label">Enter Roll No</label>
+            </td>
+            <td>
+                <input type="number" name="rollno" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Name</td>
+            <td>
+                <input type="text" name="name" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Father Name</td>
+            <td>
+                <input type="text" name="fname" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Mother Name</td>
+            <td>
+                <input type="text" name="mname" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Select Gender
+            </td>
+            <td>
+                <input class="form-check-input" type="radio" name="gender" value="male"> Male
+                <input class="form-check-input" type="radio" name="gender" value="female"> Female
+            </td>
+        </tr>
+        <tr>
+            <td>Enter DOB</td>
+            <td>
+                <input type="date" name="dob" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Address</td>
+            <td>
+                <textarea class="form-control"  name="address" rows="3"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Select Program</td>
+            <td>
+                <select name="program" class="form-control">
+                    <option selected>-Select Program-</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="M.Tech">M.Tech</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Select Branch</td>
+            <td>
+                <select name="branch" class="form-control">
+                    <option selected>-select branch-</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Enter year</td>
+            <td>
+                <select name="year"class="form-control">
+                    <option selected>-select year-</option>
+                    <option value="First Year">First Year</option>
+                    <option value="Second Year">Second Year</option>
+                    <option value="Third Year">Third Year</option>
+                    <option value="Forth Year">Forth Year</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Contact No</td>
+            <td>
+                <input type="number" name="contactno" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Email Address</td>
+            <td>
+                <input type="text" class="form-control"  name="emailaddress" placeholder="name@example.com">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Password</td>
+            <td>
+                <input type="password" name="password" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td>
+                <input type="password" name="confirmpassword" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Captcha Code</td>
+            <td>{{form.captcha}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+    </div>
+    <div class="col-sm-4">
+        <img src="{% static 'images/2.png' %}" alt="" height="300" width="400" style="position: relative; top:320px;">
+    </div>
+</div>
+{% endblock %}
